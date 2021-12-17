@@ -1,0 +1,201 @@
+Hostel
+==========================
+CREATE TABLE [dbo].[Hostel]
+(
+	[Hostel_Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Hostel_Name] NVARCHAR(50) NOT NULL, 
+    [Owner_Name] NVARCHAR(50) NULL, 
+    [Phone_No] NVARCHAR(15) NULL, 
+    [Email_Id] NVARCHAR(50) NULL, 
+    [Address_Desc] NVARCHAR(50) NULL, 
+    [Is_Active] BIT NULL DEFAULT 1, 
+    [Create_Date] DATETIME NULL DEFAULT GETDATE(), 
+    [Update_Date] DATETIME NULL, 
+    [Create_By] NVARCHAR(15) NULL, 
+    [Update_By] NVARCHAR(15) NULL, 
+    [Create_Dev] NVARCHAR(30) NULL, 
+    [Update_Dev] NVARCHAR(30) NULL
+);
+alter table Hostel add constraint UK_Hostel_Name unique(Hostel_Name);
+
+Floors
+==========================
+CREATE TABLE [dbo].[Floors]
+(
+	[Floor_Id]  INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Hostel_Id] INT NOT NULL, 	
+    [Floor_Name] NVARCHAR(50) NOT NULL, 
+    [Floor_Desc] NVARCHAR(50) NULL, 
+    [Is_Active] BIT NULL DEFAULT 1, 
+    [Create_Date] DATETIME NULL DEFAULT GETDATE(), 
+    [Update_Date] DATETIME NULL, 
+    [Create_By] NVARCHAR(15) NULL, 
+    [Update_By] NVARCHAR(15) NULL, 
+    [Create_Dev] NVARCHAR(30) NULL, 
+    [Update_Dev] NVARCHAR(30) NULL
+);
+alter table Floors add constraint UK_Floor_Name unique(Floor_Name);
+
+Rooms
+==========================
+CREATE TABLE [dbo].[Rooms]
+(
+	[Room_Id]  INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Floor_Id] INT NOT NULL, 
+    [Room_Name] NVARCHAR(50) NOT NULL, 
+    [Room_Capacity] INT NULL,
+    [Room_Desc] NVARCHAR(50) NULL,
+    [Is_Active] BIT NULL DEFAULT 1, 
+    [Create_Date] DATETIME NULL DEFAULT GETDATE(), 
+    [Update_Date] DATETIME NULL, 
+    [Create_By] NVARCHAR(15) NULL, 
+    [Update_By] NVARCHAR(15) NULL, 
+    [Create_Dev] NVARCHAR(30) NULL, 
+    [Update_Dev] NVARCHAR(30) NULL
+);
+alter table Rooms add constraint UK_Room_Name unique(Room_Name);
+
+Beds
+==========================
+CREATE TABLE [dbo].[Beds]
+(
+	[Bed_Id]  INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Room_Id] INT NOT NULL, 
+    [Bed_Name] NVARCHAR(50) NOT NULL, 
+    [Bed_Desc] NVARCHAR(50) NULL,
+    [Is_Active] BIT NULL DEFAULT 1, 
+    [Create_Date] DATETIME NULL DEFAULT GETDATE(), 
+    [Update_Date] DATETIME NULL, 
+    [Create_By] NVARCHAR(15) NULL, 
+    [Update_By] NVARCHAR(15) NULL, 
+    [Create_Dev] NVARCHAR(30) NULL, 
+    [Update_Dev] NVARCHAR(30) NULL
+);
+alter table Beds add constraint UK_Bed_Name unique(Bed_Name);
+
+
+Bed_Rate
+==========================
+CREATE TABLE [dbo].[Bed_Rate]
+(
+	[Bed_Rate_Id] BIGINT NOT NULL PRIMARY KEY, 
+    [Bed_Id] INT NOT NULL, 
+    [Start_Date] DATE NOT NULL, 
+    [End_Date] DATE NOT NULL, 
+    [Daily_Rate] DECIMAL NOT NULL,
+	    [Is_Active] BIT NULL DEFAULT 1, 
+    [Create_Date] DATETIME NULL DEFAULT GETDATE(), 
+    [Update_Date] DATETIME NULL, 
+    [Create_By] NVARCHAR(15) NULL, 
+    [Update_By] NVARCHAR(15) NULL, 
+    [Create_Dev] NVARCHAR(30) NULL, 
+    [Update_Dev] NVARCHAR(30) NULL
+);
+alter table Bed_Rate add constraint UK_Bed_Rate unique(Bed_Id,Start_Date);
+
+Guests
+==========================
+Guest_id
+Guest_name
+phone_no
+email_id
+address
+Guest_desc
+Guest_GovID
+
+booking_master
+==========================
+booking_id
+Bed_id
+Guests_id
+daily_rate
+start_date
+end_date
+booking_desc
+
+booking_details
+==========================
+booking_id
+details_type
+asset_id
+asset_status
+asset_desc
+
+Assets
+==========================
+asset_id
+asset_name
+asset_type
+
+
+Guests_Accounts
+==========================
+Guests_id
+Money_Deposit
+Money_Credit
+Money_Balance
+
+Payment_Details
+==========================
+Guests_id
+Booking_id
+Services_Id
+Payment_Amount
+Payment_Date
+Payment_desc
+
+
+Meal_Master
+==========================
+Meal_id
+Meal_date
+Meal_Category_id
+Guests_id
+Meal_rate
+
+Meal_Category
+==========================
+Breakfast
+Morning_Snacks
+Lunch
+Evening_Snacks
+Dinner
+
+
+Bazar_Master
+==========================
+Bazar_Id
+Bazar_Date
+Money_Deposit
+Money_Credit
+Money_Balance
+Bazar_desc
+Is_Proccessed
+
+
+Bazar_Details
+==========================
+Bazar_Id
+Product_Id
+Product_Rate
+Product_Qty
+Total_Credit
+Bazar_desc
+
+
+Bazar_Products
+==========================
+Product_Id
+Product_Name
+Product_Rate
+
+Hostel_Services
+==========================
+Services_Id
+Services_Name
+
+Gas
+Electricity
+Cooker
+Room Rent
+Services Charge

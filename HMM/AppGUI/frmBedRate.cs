@@ -247,5 +247,10 @@ namespace HMM.AppGUI
                 MsgBox.Failed(_tpl.Item2, this.Text);
             }
         }
+
+        private void frmBedRate_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MsgBox.Exit(this.Text) == DialogResult.Yes) { this.Dispose(); } else { e.Cancel = true; }
+        }
     }
 }

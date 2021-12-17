@@ -127,6 +127,16 @@ asset_id
 asset_name
 asset_type
 
+Hostel_Services
+==========================
+Services_Id
+Services_Name
+
+Gas
+Electricity
+Cooker
+Room Rent
+Services Charge
 
 Guests_Accounts
 ==========================
@@ -144,14 +154,20 @@ Payment_Amount
 Payment_Date
 Payment_desc
 
-
-Meal_Master
+Meal_Manager
 ==========================
-Meal_id
-Meal_date
+Manager_Id
+Guest_Id
+Reponsible_Month
+
+Meal_Details
+==========================
+Manager_Id
 Meal_Category_id
 Guests_id
 Meal_rate
+Meal_Qty
+Meal_date
 
 Meal_Category
 ==========================
@@ -189,13 +205,3 @@ Product_Id
 Product_Name
 Product_Rate
 
-Hostel_Services
-==========================
-Services_Id
-Services_Name
-
-Gas
-Electricity
-Cooker
-Room Rent
-Services Charge

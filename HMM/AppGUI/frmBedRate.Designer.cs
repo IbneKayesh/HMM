@@ -28,6 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinEditors.EditorButton editorButton1 = new Infragistics.Win.UltraWinEditors.EditorButton();
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
@@ -71,19 +83,9 @@
             Infragistics.Win.UltraWinEditors.EditorButton editorButton5 = new Infragistics.Win.UltraWinEditors.EditorButton();
             Infragistics.Win.UltraWinEditors.EditorButton editorButton6 = new Infragistics.Win.UltraWinEditors.EditorButton();
             Infragistics.Win.UltraWinEditors.EditorButton editorButton7 = new Infragistics.Win.UltraWinEditors.EditorButton();
-            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ultraGroupBox1 = new Infragistics.Win.Misc.UltraGroupBox();
+            this.grdDetails = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.cmbBeds = new Infragistics.Win.UltraWinGrid.UltraCombo();
             this.cmbRooms = new Infragistics.Win.UltraWinGrid.UltraCombo();
             this.cmbFloors = new Infragistics.Win.UltraWinGrid.UltraCombo();
@@ -94,9 +96,10 @@
             this.txtRate = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.dteEndDate = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
             this.dteStartDate = new Infragistics.Win.UltraWinEditors.UltraDateTimeEditor();
-            this.ultraGroupBox1 = new Infragistics.Win.Misc.UltraGroupBox();
-            this.grdDetails = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBox1)).BeginInit();
+            this.ultraGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBeds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbRooms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbFloors)).BeginInit();
@@ -105,9 +108,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteEndDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteStartDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBox1)).BeginInit();
-            this.ultraGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -127,6 +127,84 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bed Rate";
+            // 
+            // ultraGroupBox1
+            // 
+            this.ultraGroupBox1.CaptionAlignment = Infragistics.Win.Misc.GroupBoxCaptionAlignment.Center;
+            this.ultraGroupBox1.Controls.Add(this.grdDetails);
+            this.ultraGroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ultraGroupBox1.Location = new System.Drawing.Point(3, 133);
+            this.ultraGroupBox1.Name = "ultraGroupBox1";
+            this.ultraGroupBox1.Size = new System.Drawing.Size(772, 228);
+            this.ultraGroupBox1.TabIndex = 28;
+            this.ultraGroupBox1.Text = "Details";
+            this.ultraGroupBox1.ViewStyle = Infragistics.Win.Misc.GroupBoxViewStyle.Office2007;
+            // 
+            // grdDetails
+            // 
+            appearance1.BackColor = System.Drawing.SystemColors.Window;
+            appearance1.BorderColor = System.Drawing.SystemColors.InactiveCaption;
+            this.grdDetails.DisplayLayout.Appearance = appearance1;
+            this.grdDetails.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            this.grdDetails.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
+            appearance2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            appearance2.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance2.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance2.BorderColor = System.Drawing.SystemColors.Window;
+            this.grdDetails.DisplayLayout.GroupByBox.Appearance = appearance2;
+            appearance3.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.grdDetails.DisplayLayout.GroupByBox.BandLabelAppearance = appearance3;
+            this.grdDetails.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            this.grdDetails.DisplayLayout.GroupByBox.Hidden = true;
+            appearance4.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            appearance4.BackColor2 = System.Drawing.SystemColors.Control;
+            appearance4.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance4.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.grdDetails.DisplayLayout.GroupByBox.PromptAppearance = appearance4;
+            this.grdDetails.DisplayLayout.MaxColScrollRegions = 1;
+            this.grdDetails.DisplayLayout.MaxRowScrollRegions = 1;
+            appearance5.BackColor = System.Drawing.SystemColors.Window;
+            appearance5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.grdDetails.DisplayLayout.Override.ActiveCellAppearance = appearance5;
+            appearance6.BackColor = System.Drawing.SystemColors.Highlight;
+            appearance6.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdDetails.DisplayLayout.Override.ActiveRowAppearance = appearance6;
+            this.grdDetails.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
+            this.grdDetails.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
+            appearance7.BackColor = System.Drawing.SystemColors.Window;
+            this.grdDetails.DisplayLayout.Override.CardAreaAppearance = appearance7;
+            appearance8.BorderColor = System.Drawing.Color.Silver;
+            appearance8.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
+            this.grdDetails.DisplayLayout.Override.CellAppearance = appearance8;
+            this.grdDetails.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+            this.grdDetails.DisplayLayout.Override.CellPadding = 0;
+            appearance9.BackColor = System.Drawing.SystemColors.Control;
+            appearance9.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance9.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance9.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
+            appearance9.BorderColor = System.Drawing.SystemColors.Window;
+            this.grdDetails.DisplayLayout.Override.GroupByRowAppearance = appearance9;
+            appearance10.TextHAlignAsString = "Left";
+            this.grdDetails.DisplayLayout.Override.HeaderAppearance = appearance10;
+            this.grdDetails.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+            this.grdDetails.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
+            appearance11.BackColor = System.Drawing.SystemColors.Window;
+            appearance11.BorderColor = System.Drawing.Color.Silver;
+            this.grdDetails.DisplayLayout.Override.RowAppearance = appearance11;
+            this.grdDetails.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
+            appearance12.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.grdDetails.DisplayLayout.Override.TemplateAddRowAppearance = appearance12;
+            this.grdDetails.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
+            this.grdDetails.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
+            this.grdDetails.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
+            this.grdDetails.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
+            this.grdDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdDetails.Location = new System.Drawing.Point(3, 19);
+            this.grdDetails.Name = "grdDetails";
+            this.grdDetails.Size = new System.Drawing.Size(766, 206);
+            this.grdDetails.TabIndex = 7;
+            this.grdDetails.Text = "ultraGrid1";
+            this.grdDetails.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.grdDetails_InitializeLayout);
             // 
             // cmbBeds
             // 
@@ -410,84 +488,6 @@
             this.dteStartDate.Size = new System.Drawing.Size(230, 24);
             this.dteStartDate.TabIndex = 7;
             // 
-            // ultraGroupBox1
-            // 
-            this.ultraGroupBox1.CaptionAlignment = Infragistics.Win.Misc.GroupBoxCaptionAlignment.Center;
-            this.ultraGroupBox1.Controls.Add(this.grdDetails);
-            this.ultraGroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ultraGroupBox1.Location = new System.Drawing.Point(3, 133);
-            this.ultraGroupBox1.Name = "ultraGroupBox1";
-            this.ultraGroupBox1.Size = new System.Drawing.Size(772, 228);
-            this.ultraGroupBox1.TabIndex = 28;
-            this.ultraGroupBox1.Text = "Details";
-            this.ultraGroupBox1.ViewStyle = Infragistics.Win.Misc.GroupBoxViewStyle.Office2007;
-            // 
-            // grdDetails
-            // 
-            appearance1.BackColor = System.Drawing.SystemColors.Window;
-            appearance1.BorderColor = System.Drawing.SystemColors.InactiveCaption;
-            this.grdDetails.DisplayLayout.Appearance = appearance1;
-            this.grdDetails.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            this.grdDetails.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            appearance2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            appearance2.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance2.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance2.BorderColor = System.Drawing.SystemColors.Window;
-            this.grdDetails.DisplayLayout.GroupByBox.Appearance = appearance2;
-            appearance3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.grdDetails.DisplayLayout.GroupByBox.BandLabelAppearance = appearance3;
-            this.grdDetails.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            this.grdDetails.DisplayLayout.GroupByBox.Hidden = true;
-            appearance4.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            appearance4.BackColor2 = System.Drawing.SystemColors.Control;
-            appearance4.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-            appearance4.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.grdDetails.DisplayLayout.GroupByBox.PromptAppearance = appearance4;
-            this.grdDetails.DisplayLayout.MaxColScrollRegions = 1;
-            this.grdDetails.DisplayLayout.MaxRowScrollRegions = 1;
-            appearance5.BackColor = System.Drawing.SystemColors.Window;
-            appearance5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.grdDetails.DisplayLayout.Override.ActiveCellAppearance = appearance5;
-            appearance6.BackColor = System.Drawing.SystemColors.Highlight;
-            appearance6.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdDetails.DisplayLayout.Override.ActiveRowAppearance = appearance6;
-            this.grdDetails.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Dotted;
-            this.grdDetails.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Dotted;
-            appearance7.BackColor = System.Drawing.SystemColors.Window;
-            this.grdDetails.DisplayLayout.Override.CardAreaAppearance = appearance7;
-            appearance8.BorderColor = System.Drawing.Color.Silver;
-            appearance8.TextTrimming = Infragistics.Win.TextTrimming.EllipsisCharacter;
-            this.grdDetails.DisplayLayout.Override.CellAppearance = appearance8;
-            this.grdDetails.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
-            this.grdDetails.DisplayLayout.Override.CellPadding = 0;
-            appearance9.BackColor = System.Drawing.SystemColors.Control;
-            appearance9.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance9.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance9.BackGradientStyle = Infragistics.Win.GradientStyle.Horizontal;
-            appearance9.BorderColor = System.Drawing.SystemColors.Window;
-            this.grdDetails.DisplayLayout.Override.GroupByRowAppearance = appearance9;
-            appearance10.TextHAlignAsString = "Left";
-            this.grdDetails.DisplayLayout.Override.HeaderAppearance = appearance10;
-            this.grdDetails.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
-            this.grdDetails.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
-            appearance11.BackColor = System.Drawing.SystemColors.Window;
-            appearance11.BorderColor = System.Drawing.Color.Silver;
-            this.grdDetails.DisplayLayout.Override.RowAppearance = appearance11;
-            this.grdDetails.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
-            appearance12.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.grdDetails.DisplayLayout.Override.TemplateAddRowAppearance = appearance12;
-            this.grdDetails.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.True;
-            this.grdDetails.DisplayLayout.ScrollBounds = Infragistics.Win.UltraWinGrid.ScrollBounds.ScrollToFill;
-            this.grdDetails.DisplayLayout.ScrollStyle = Infragistics.Win.UltraWinGrid.ScrollStyle.Immediate;
-            this.grdDetails.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
-            this.grdDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdDetails.Location = new System.Drawing.Point(3, 19);
-            this.grdDetails.Name = "grdDetails";
-            this.grdDetails.Size = new System.Drawing.Size(766, 206);
-            this.grdDetails.TabIndex = 7;
-            this.grdDetails.Text = "ultraGrid1";
-            this.grdDetails.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.grdDetails_InitializeLayout);
-            // 
             // frmBedRate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -500,9 +500,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmBedRate";
             this.Activated += new System.EventHandler(this.frmBedRate_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBedRate_FormClosing);
             this.Load += new System.EventHandler(this.frmBedRate_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBox1)).EndInit();
+            this.ultraGroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbBeds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbRooms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbFloors)).EndInit();
@@ -512,9 +516,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteEndDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dteStartDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBox1)).EndInit();
-            this.ultraGroupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdDetails)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -63,6 +63,7 @@ CREATE TABLE [dbo].[Beds]
     [Room_Id] INT NOT NULL, 
     [Bed_Name] NVARCHAR(50) NOT NULL, 
     [Bed_Desc] NVARCHAR(50) NULL,
+    [Is_Booked] BIT NULL DEFAULT 0, 
     [Is_Active] BIT NULL DEFAULT 1, 
     [Create_Date] DATETIME NULL DEFAULT GETDATE(), 
     [Update_Date] DATETIME NULL, 
@@ -83,7 +84,7 @@ CREATE TABLE [dbo].[Bed_Rate]
     [Start_Date] DATE NOT NULL, 
     [End_Date] DATE NOT NULL, 
     [Daily_Rate] DECIMAL NOT NULL,
-	    [Is_Active] BIT NULL DEFAULT 1, 
+    [Is_Active] BIT NULL DEFAULT 1, 
     [Create_Date] DATETIME NULL DEFAULT GETDATE(), 
     [Update_Date] DATETIME NULL, 
     [Create_By] NVARCHAR(15) NULL, 
@@ -95,29 +96,114 @@ alter table Bed_Rate add constraint UK_Bed_Rate unique(Bed_Id,Start_Date);
 
 Guests
 ==========================
-Guest_id
-Guest_name
-phone_no
-email_id
-address
-Guest_desc
-Guest_GovID
+CREATE TABLE [dbo].[Guests]
+(
+	[Guest_Id] BIGINT NOT NULL PRIMARY KEY, 
+    [Guest_Name] NVARCHAR(50) NOT NULL, 
+    [Phone_No] NVARCHAR(30) NOT NULL, 
+    [Email_Id] NVARCHAR(50) NULL, 
+    [Gender_Id] NVARCHAR(10) NULL, 
+    [Religion_Id] NVARCHAR(15) NULL, 
+    [Relationship_Id] NVARCHAR(15) NULL, 
+    [Guest_Ages] NVARCHAR(15) NULL, 
+    [Guest_Address] NVARCHAR(100) NULL,
+    [Guest_Desc] NVARCHAR(100) NULL,
+    [Guest_GovID] NVARCHAR(50) NULL,
+    [Guest_Pics] NVARCHAR(50) NULL,
+    [Is_Active] BIT NULL DEFAULT 1, 
+    [Create_Date] DATETIME NULL DEFAULT GETDATE(), 
+    [Update_Date] DATETIME NULL, 
+    [Create_By] NVARCHAR(15) NULL, 
+    [Update_By] NVARCHAR(15) NULL, 
+    [Create_Dev] NVARCHAR(30) NULL, 
+    [Update_Dev] NVARCHAR(30) NULL
+);
+
+
+CREATE TABLE [dbo].[Genders]
+(
+	[Gender_Id]  NVARCHAR(50) NOT NULL PRIMARY KEY,
+	[ID] INT NULL
+);
+CREATE TABLE [dbo].[Religions]
+(
+	[Religion_Id]  NVARCHAR(50) NOT NULL PRIMARY KEY,
+	[ID] INT NULL
+);
+CREATE TABLE [dbo].[Relationships]
+(
+	[Relationship_Id]  NVARCHAR(50) NOT NULL PRIMARY KEY,
+	[ID] INT NULL
+);
 
 booking_master
 ==========================
-booking_id
-Bed_id
-Guests_id
-daily_rate
-start_date
-end_date
-booking_desc
+CREATE TABLE [dbo].Booking_Master
+(
+	[Booking_Id] NVARCHAR(30) NOT NULL PRIMARY KEY, 
+    [Bed_Id] INT NOT NULL, 
+    [Guest_Id] BIGINT NOT NULL, 
+    [Start_Date] DATETIME NOT NULL DEFAULT GETDATE(), 
+    [End_Date] DATETIME NULL, 
+    [Booking_Desc] NVARCHAR(100) NULL,
+    [Reservation_Id] NVARCHAR(30) DEFAULT '0', 
+    [Is_Active] BIT NULL DEFAULT 1, 
+    [Create_Date] DATETIME NULL DEFAULT GETDATE(), 
+    [Update_Date] DATETIME NULL, 
+    [Create_By] NVARCHAR(15) NULL, 
+    [Update_By] NVARCHAR(15) NULL, 
+    [Create_Dev] NVARCHAR(30) NULL, 
+    [Update_Dev] NVARCHAR(30) NULL
+)
 
 booking_details
 ==========================
+CREATE TABLE [dbo].[Booking_Details] (
+    [Booking_Id]   NVARCHAR (30)  NOT NULL,
+    [Service_Id]       INT            NOT NULL,
+    [Service_Qty]     DECIMAL(18, 2)         NOT NULL DEFAULT 1,
+    [Service_Rate]   DECIMAL(18, 2)        NOT NULL,
+    [Booking_Desc] NVARCHAR (100) NULL,
+    [Charge_Type] NVARCHAR(10) NOT NULL,
+    [Is_Active]    BIT            DEFAULT ((1)) NULL,
+    [Create_Date]  DATETIME       DEFAULT (getdate()) NULL,
+    [Update_Date]  DATETIME       NULL,
+    [Create_By]    NVARCHAR (15)  NULL,
+    [Update_By]    NVARCHAR (15)  NULL,
+    [Create_Dev]   NVARCHAR (30)  NULL,
+    [Update_Dev]   NVARCHAR (30)  NULL,
+    PRIMARY KEY CLUSTERED ([Booking_Id] ASC)
+);
+
+
+
+Hostel_Services
+==========================
+CREATE TABLE [dbo].[Services]
+(
+	[Service_Id] INT NOT NULL PRIMARY KEY, 
+    [Service_Name] NVARCHAR(30) NOT NULL, 
+    [Service_Charge] DECIMAL(18, 2) NOT NULL,
+    [Charge_Type] NVARCHAR(10) NOT NULL,
+    [Is_Default] BIT NULL DEFAULT 1, 
+    [Is_Active] BIT NULL DEFAULT 1, 
+    [Create_Date] DATETIME NULL DEFAULT GETDATE(), 
+    [Update_Date] DATETIME NULL, 
+    [Create_By] NVARCHAR(15) NULL, 
+    [Update_By] NVARCHAR(15) NULL, 
+    [Create_Dev] NVARCHAR(30) NULL, 
+    [Update_Dev] NVARCHAR(30) NULL
+)
+alter table Services add constraint UK_Service_Name unique(Service_Name);
+
+
+
+booking_assets
+==========================
 booking_id
-details_type
+assign_type
 asset_id
+asset_qty
 asset_status
 asset_desc
 
@@ -127,16 +213,6 @@ asset_id
 asset_name
 asset_type
 
-Hostel_Services
-==========================
-Services_Id
-Services_Name
-
-Gas
-Electricity
-Cooker
-Room Rent
-Services Charge
 
 Guests_Accounts
 ==========================

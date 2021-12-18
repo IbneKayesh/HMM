@@ -93,6 +93,18 @@
     <Compile Include="Aio\Encryptions.cs" />
     <Compile Include="Aio\FilterDataTable.cs" />
     <Compile Include="Aio\SqlDatabase.cs" />
+    <Compile Include="AppGUI\frmBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppGUI\frmBooking.Designer.cs">
+      <DependentUpon>frmBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppGUI\frmGuest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppGUI\frmGuest.Designer.cs">
+      <DependentUpon>frmGuest.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppGUI\frmBedRate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,8 +123,15 @@
     <Compile Include="AppGUI\frmMDI.Designer.cs">
       <DependentUpon>frmMDI.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppModel\Booking_Details_VM.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AppGUI\frmBooking.resx">
+      <DependentUpon>frmBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppGUI\frmGuest.resx">
+      <DependentUpon>frmGuest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppGUI\frmBedRate.resx">
       <DependentUpon>frmBedRate.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,6 +152,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\HMM.AppModel.Booking_Details_VM.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

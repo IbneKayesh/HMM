@@ -7,29 +7,28 @@ using System;
 using System.Data;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using HMM.AppModel;
 
 namespace HMM.AppGUI
 {
-    public partial class frmBedRate : MetroForm
+    public partial class frmBooking : MetroForm
     {
-        public frmBedRate()
+        public frmBooking()
         {
             InitializeComponent();
         }
 
-        private void frmBedRate_Load(object sender, EventArgs e)
+        private void frmBooking_Load(object sender, EventArgs e)
         {
             Initialize_Controls();
             Initialize_DropdownList();
             dteStartDate.Value = DateTime.Now;
-            dteEndDate.Value = DateTime.Now.AddYears(1);
         }
         private void Initialize_Controls()
         {
             //set baloon tooltip text
             // AioControls.SetToolTip(this, "mbtnClear=Clear Form/F2,mbtnSave=Save/F5,mbtnFind=Find/F3");
-            //set number only text box
-            AioControls.NumberOnly(this, "txtRate=5,txtMRate=10");
+
             //AioControls.TextBoxReadOnly(this, "txtStatus", ReadOnly: true);
             //progressar hide
             pBar.Hide();
@@ -49,23 +48,7 @@ namespace HMM.AppGUI
             pBar.Hide();
         }
 
-        private void txtRate_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtMRate.Text = (Convert.ToDecimal(txtRate.Text) * 30.5M).ToString("0.00");
-            }
-            catch { }
-        }
 
-        private void txtMRate_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtRate.Text = (Convert.ToDecimal(txtMRate.Text) / 30.5M).ToString("0.00");
-            }
-            catch { }
-        }
 
         #region layout
         private void cmbFloors_InitializeLayout(object sender, InitializeLayoutEventArgs e)
@@ -88,7 +71,6 @@ namespace HMM.AppGUI
             }
             catch { }
         }
-
         private void cmbBeds_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
             try
@@ -99,38 +81,36 @@ namespace HMM.AppGUI
             }
             catch { }
         }
-
         private void grdDetails_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
-            e.Layout.Bands[0].Columns[0].Header.Caption = "Id";
-            e.Layout.Bands[0].Columns[0].CellActivation = Activation.NoEdit;
+            e.Layout.Bands[0].Columns[0].Hidden = true;
+            e.Layout.Bands[0].Columns[1].Hidden = true;
 
-            e.Layout.Bands[0].Columns[1].Header.Caption = "Bed Name";
-            e.Layout.Bands[0].Columns[1].CellActivation = Activation.NoEdit;
-
-            e.Layout.Bands[0].Columns[2].Header.Caption = "Start Date";
+            e.Layout.Bands[0].Columns[2].Header.Caption = "Service";
             e.Layout.Bands[0].Columns[2].CellActivation = Activation.NoEdit;
 
-            e.Layout.Bands[0].Columns[3].Header.Caption = "End Date";
-            e.Layout.Bands[0].Columns[3].CellActivation = Activation.NoEdit;
+            e.Layout.Bands[0].Columns[3].Header.Caption = "Qty";
 
-            e.Layout.Bands[0].Columns[4].Header.Caption = "Daily Rate";
-            e.Layout.Bands[0].Columns[4].CellActivation = Activation.NoEdit;
+            e.Layout.Bands[0].Columns[4].Header.Caption = "Rate";
+            //e.Layout.Bands[0].Columns[4].CellActivation = Activation.NoEdit;
+
+            e.Layout.Bands[0].Columns[5].Header.Caption = "Total";
+            e.Layout.Bands[0].Columns[5].CellActivation = Activation.NoEdit;
+
+            e.Layout.Bands[0].Columns[6].Header.Caption = "Note";
+
+            e.Layout.Bands[0].Columns[7].Hidden = true;
         }
         #endregion
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            if (AioControls.TextBoxIsNullOrWhiteSpace(this, "txtRate"))
+            if (AioControls.TextBoxIsNullOrWhiteSpace(this, "txtPhone,txtGuestName"))
             {
                 MsgBox.Required("Rate", this.Text);
                 return;
             }
 
-            if ((dteEndDate.DateTime - dteStartDate.DateTime).Days < 0)
-            {
-                MsgBox.Failed("End date can not be Back then Start", this.Text);
-                return;
-            }
+
 
             if (MsgBox.Confirm(this.Text) == DialogResult.Yes)
             {
@@ -140,7 +120,7 @@ namespace HMM.AppGUI
 
                 string sql_1 = $@"select t.Bed_Rate_Id,t.Start_Date,t.End_Date from Bed_Rate t where t.Is_Active=1
 						and (t.Start_Date>='{dteStartDate.DateTime.ToString("dd-MMM-yyyy")}'
-						or t.End_Date <='{dteEndDate.DateTime.ToString("dd-MMM-yyyy")}' )
+						or t.End_Date <='{dteStartDate.DateTime.ToString("dd-MMM-yyyy")}' )
                         and t.Bed_Id={cmbBeds.ActiveRow.Cells[0].Value}";
 
                 Tuple<DataTable, string> _tpl = FilterDataTable.Filter(await AioDLL.GetAsDataTableSqlDB(sql_1));
@@ -155,13 +135,13 @@ namespace HMM.AppGUI
                             pBar.Hide();
                             return;
                         }
-                        sqlList.Add($@"update Bed_Rate Set End_Date='{dteEndDate.DateTime.ToString("dd-MMM-yyyy")}',Daily_Rate={AioControls.TxtNumber(txtRate)},
+                        sqlList.Add($@"update Bed_Rate Set End_Date='{dteStartDate.DateTime.ToString("dd-MMM-yyyy")}',Daily_Rate={AioControls.TxtNumber(txtBookingId)},
                                 Create_By='{AioData.UserId}',Create_Dev='{AioData.DevicesId}' where Bed_Rate_Id={_tpl.Item1.Rows[0][0]}");
                     }
                 }
                 else
                 {
-                    sqlList.Add($"insert into Bed_Rate(Bed_Rate_Id,Bed_Id,Start_Date,End_Date,Daily_Rate,Create_By,Create_Dev)values('{Bed_Rate_Id()}',{cmbBeds.ActiveRow.Cells[0].Value},'{dteStartDate.DateTime.ToString("dd-MMM-yyyy")}','{dteEndDate.DateTime.ToString("dd-MMM-yyyy")}',{AioControls.TxtNumber(txtRate)},'{AioData.UserId}','{AioData.DevicesId}')");
+                    sqlList.Add($"insert into Bed_Rate(Bed_Rate_Id,Bed_Id,Start_Date,End_Date,Daily_Rate,Create_By,Create_Dev)values('{Booking_Id()}',{cmbBeds.ActiveRow.Cells[0].Value},'{dteStartDate.DateTime.ToString("dd-MMM-yyyy")}','{dteStartDate.DateTime.ToString("dd-MMM-yyyy")}',{AioControls.TxtNumber(txtBookingId)},'{AioData.UserId}','{AioData.DevicesId}')");
                 }
                 string pst = await AioDLL.PostAsSqlListSqlDB(sqlList);
                 if (AppKeys.PostSuccess == pst)
@@ -195,7 +175,6 @@ namespace HMM.AppGUI
                     {
                         MsgBox.Failed(_tpl.Item2, this.Text);
                     }
-                    load_Details();
                 }
             }
             catch (Exception) { pBar.Hide(); }
@@ -211,7 +190,7 @@ namespace HMM.AppGUI
             {
                 if (cmbRooms.ActiveRow.Index >= 0)
                 {
-                    Tuple<DataTable, string> _tpl = FilterDataTable.Filter(await CommonDal.getBedByRoomId(cmbRooms.ActiveRow.Cells[0].Value.ToString()));
+                    Tuple<DataTable, string> _tpl = FilterDataTable.Filter(await CommonDal.getBedFreeByRoomId(cmbRooms.ActiveRow.Cells[0].Value.ToString()));
                     if (_tpl.Item2 == AppKeys.PostSuccess)
                     {
                         AioControls.LoadComboBox(cmbBeds, _tpl.Item1, "BED_ID", "BED_NAME", false);
@@ -226,14 +205,14 @@ namespace HMM.AppGUI
             pBar.Hide();
         }
 
-        private void frmBedRate_Activated(object sender, EventArgs e)
+        private void frmBooking_Activated(object sender, EventArgs e)
         {
             AioControls.ShowNavigation(this);
         }
 
-        private string Bed_Rate_Id()
+        private string Booking_Id()
         {
-            return dteStartDate.DateTime.Day.ToString() + dteStartDate.DateTime.Month.ToString() + dteStartDate.DateTime.Year.ToString() + cmbBeds.ActiveRow.Cells[0].Value.ToString();
+            return dteStartDate.DateTime.Day.ToString() + dteStartDate.DateTime.Month.ToString() + dteStartDate.DateTime.Year.ToString() + AioControls.TxtNumber(txtPhone);
         }
 
         private async void load_Details()
@@ -256,7 +235,7 @@ namespace HMM.AppGUI
             }
         }
 
-        private void frmBedRate_FormClosing(object sender, FormClosingEventArgs e)
+        private void frmBooking_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MsgBox.Exit(this.Text) == DialogResult.Yes) { this.Dispose(); } else { e.Cancel = true; }
         }
@@ -264,12 +243,55 @@ namespace HMM.AppGUI
         private void btnClear_Click(object sender, EventArgs e)
         {
             AioControls.ClearControls(this, "grdDetails");
-            AioControls.SetDefaultValueTextBoxControls(this, "txtRate=0,txtMRate=0");
         }
 
         private void btnFind_Click(object sender, EventArgs e)
         {
             load_Details();
+        }
+
+        private async void txtPhone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                DataTable dt = await CommonDal.getGuestByPhone(AioControls.TxtNumber(txtPhone));
+                if (dt.Rows.Count == 1)
+                {
+                    txtGuestId.Text = dt.Rows[0]["GUEST_ID"].ToString();
+                    txtGuestName.Text = dt.Rows[0]["GUEST_NAME"].ToString();
+                    load_default_services();
+                }
+                else
+                {
+                    MsgBox.Failed("Not found", this.Text);
+                }
+            }
+        }
+        private async void load_default_services()
+        {
+            try
+            {
+                DataTable dt = await CommonDal.getServices();
+                if (dt.Rows.Count > 0)
+                {
+                    List<Booking_Details_VM> objList = new List<Booking_Details_VM>();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        Booking_Details_VM obj = new Booking_Details_VM();
+                        obj.Booking_Id = "0";
+                        obj.Service_Id = Convert.ToInt32(row["SERVICE_ID"]);
+                        obj.Service_Name = row["SERVICE_NAME"].ToString();
+                        obj.Service_Qty = 1;
+                        obj.Service_Rate = Convert.ToDecimal(row["SERVICE_CHARGE"]);
+                        obj.Total_Rate = obj.Service_Qty * obj.Service_Rate;
+                        obj.Booking_Desc = "";
+                        obj.Charge_Type = row["CHARGE_TYPE"].ToString();
+                        objList.Add(obj);
+                    }
+                    grdDetails.DataSource = objList;
+                }
+            }
+            catch { }
         }
     }
 }

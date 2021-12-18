@@ -103,7 +103,7 @@ namespace HMM.AppGUI
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
 
         }
         public string CurrentVersion
@@ -131,7 +131,7 @@ namespace HMM.AppGUI
             return is_open;
         }
 
-     
+
 
 
         private void dBAToolStripMenuItem_Click(object sender, EventArgs e)
@@ -149,7 +149,7 @@ namespace HMM.AppGUI
                 frmShow.Show();
             }
         }
-      
+
         private void bedRateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!CheckOpened("frmBedRate"))
@@ -158,6 +158,38 @@ namespace HMM.AppGUI
                 frmShow.MdiParent = this;
                 frmShow.Icon = this.Icon;
                 frmShow.Text = "Bed Rate";
+                frmShow.MaximizeBox = false;
+                frmShow.MinimizeBox = true;
+                frmShow.StartPosition = FormStartPosition.CenterScreen;
+                frmShow.WindowState = FormWindowState.Normal;
+                frmShow.Show();
+            }
+        }
+
+        private void guestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpened("frmGuest"))
+            {
+                frmGuest frmShow = new frmGuest();
+                frmShow.MdiParent = this;
+                frmShow.Icon = this.Icon;
+                frmShow.Text = "Guest";
+                frmShow.MaximizeBox = false;
+                frmShow.MinimizeBox = true;
+                frmShow.StartPosition = FormStartPosition.CenterScreen;
+                frmShow.WindowState = FormWindowState.Normal;
+                frmShow.Show();
+            }
+        }
+
+        private void bookingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpened("frmBooking"))
+            {
+                frmBooking frmShow = new frmBooking();
+                frmShow.MdiParent = this;
+                frmShow.Icon = this.Icon;
+                frmShow.Text = "Booking";
                 frmShow.MaximizeBox = false;
                 frmShow.MinimizeBox = true;
                 frmShow.StartPosition = FormStartPosition.CenterScreen;

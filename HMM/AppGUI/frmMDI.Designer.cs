@@ -74,6 +74,7 @@
             this.pMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dBAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bedRateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -85,8 +86,9 @@
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tsslNavigation = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.bookingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -445,7 +447,9 @@
             // 
             this.pMToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dBAToolStripMenuItem,
-            this.bedRateToolStripMenuItem});
+            this.bedRateToolStripMenuItem,
+            this.guestToolStripMenuItem,
+            this.bookingToolStripMenuItem});
             this.pMToolStripMenuItem.Name = "pMToolStripMenuItem";
             this.pMToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.pMToolStripMenuItem.Text = "PM";
@@ -453,16 +457,23 @@
             // dBAToolStripMenuItem
             // 
             this.dBAToolStripMenuItem.Name = "dBAToolStripMenuItem";
-            this.dBAToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.dBAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.dBAToolStripMenuItem.Text = "DBA";
             this.dBAToolStripMenuItem.Click += new System.EventHandler(this.dBAToolStripMenuItem_Click);
             // 
             // bedRateToolStripMenuItem
             // 
             this.bedRateToolStripMenuItem.Name = "bedRateToolStripMenuItem";
-            this.bedRateToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.bedRateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.bedRateToolStripMenuItem.Text = "Bed Rate";
             this.bedRateToolStripMenuItem.Click += new System.EventHandler(this.bedRateToolStripMenuItem_Click);
+            // 
+            // guestToolStripMenuItem
+            // 
+            this.guestToolStripMenuItem.Name = "guestToolStripMenuItem";
+            this.guestToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.guestToolStripMenuItem.Text = "Guest";
+            this.guestToolStripMenuItem.Click += new System.EventHandler(this.guestToolStripMenuItem_Click);
             // 
             // toolStrip
             // 
@@ -570,6 +581,13 @@
             this.tsslNavigation.Size = new System.Drawing.Size(65, 17);
             this.tsslNavigation.Text = "Navigation";
             // 
+            // bookingToolStripMenuItem
+            // 
+            this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
+            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bookingToolStripMenuItem.Text = "Booking";
+            this.bookingToolStripMenuItem.Click += new System.EventHandler(this.bookingToolStripMenuItem_Click);
+            // 
             // frmMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -653,6 +671,8 @@
         private System.Windows.Forms.ToolStripMenuItem dBAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bedRateToolStripMenuItem;
         public System.Windows.Forms.ToolStripStatusLabel tsslNavigation;
+        private System.Windows.Forms.ToolStripMenuItem guestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bookingToolStripMenuItem;
     }
 }
 

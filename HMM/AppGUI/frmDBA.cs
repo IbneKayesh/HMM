@@ -19,6 +19,8 @@ namespace HMM.AppGUI
             Insert_Floors();
             Insert_Rooms();
             Insert_Beds();
+            Insert_Gender_Religion_Relationship();
+            Insert_Services();
         }
         #region Hostel
         private async void Insert_Hostel()
@@ -125,13 +127,13 @@ namespace HMM.AppGUI
         private async void Insert_Beds()
         {
             List<string> sqlList = new List<string>();
-            sqlList.Add($"insert into Beds(Room_Id,Bed_Name,Bed_Desc,Create_By,Create_Dev)values('1','101-1','Bed 1, Room 1, First Floor','{AioData.UserId}','{AioData.DevicesId}')");
-            sqlList.Add($"insert into Beds(Room_Id,Bed_Name,Bed_Desc,Create_By,Create_Dev)values('1','101-2','Bed 2, Room 1, First Floor','{AioData.UserId}','{AioData.DevicesId}')");
+            sqlList.Add($"insert into Beds(Room_Id,Bed_Name,Bed_Desc,Is_Booked,Create_By,Create_Dev)values('1','101-1','Bed 1, Room 1, First Floor',0,'{AioData.UserId}','{AioData.DevicesId}')");
+            sqlList.Add($"insert into Beds(Room_Id,Bed_Name,Bed_Desc,Is_Booked,Create_By,Create_Dev)values('1','101-2','Bed 2, Room 1, First Floor',0,'{AioData.UserId}','{AioData.DevicesId}')");
 
 
-            sqlList.Add($"insert into Beds(Room_Id,Bed_Name,Bed_Desc,Create_By,Create_Dev)values('2','102-1','Bed 1, Room 2, First Floor','{AioData.UserId}','{AioData.DevicesId}')");
-            sqlList.Add($"insert into Beds(Room_Id,Bed_Name,Bed_Desc,Create_By,Create_Dev)values('2','102-2','Bed 2, Room 2, First Floor','{AioData.UserId}','{AioData.DevicesId}')");
-            sqlList.Add($"insert into Beds(Room_Id,Bed_Name,Bed_Desc,Create_By,Create_Dev)values('2','102-3','Bed 3, Room 2, First Floor','{AioData.UserId}','{AioData.DevicesId}')");
+            sqlList.Add($"insert into Beds(Room_Id,Bed_Name,Bed_Desc,Is_Booked,Create_By,Create_Dev)values('2','102-1','Bed 1, Room 2, First Floor',0,'{AioData.UserId}','{AioData.DevicesId}')");
+            sqlList.Add($"insert into Beds(Room_Id,Bed_Name,Bed_Desc,Is_Booked,Create_By,Create_Dev)values('2','102-2','Bed 2, Room 2, First Floor',0,'{AioData.UserId}','{AioData.DevicesId}')");
+            sqlList.Add($"insert into Beds(Room_Id,Bed_Name,Bed_Desc,Is_Booked,Create_By,Create_Dev)values('2','102-3','Bed 3, Room 2, First Floor',0,'{AioData.UserId}','{AioData.DevicesId}')");
 
             string pst = await AioDLL.PostAsSqlListSqlDB(sqlList);
             if (AppKeys.PostSuccess == pst)
@@ -160,6 +162,60 @@ namespace HMM.AppGUI
             }
         }
         #endregion
+
+
+        #region Gender_Religion_Relationship
+        private async void Insert_Gender_Religion_Relationship()
+        {
+            List<string> sqlList = new List<string>();
+            sqlList.Add($"insert into Genders(Gender_Id,ID)values('Male',1)");
+            sqlList.Add($"insert into Genders(Gender_Id,ID)values('Female',2)");
+            sqlList.Add($"insert into Genders(Gender_Id,ID)values('Unknown',3)");
+
+            sqlList.Add($"insert into Religions(Religion_Id,ID)values('Unknown',1)");
+            sqlList.Add($"insert into Religions(Religion_Id,ID)values('Islam',2)");
+            sqlList.Add($"insert into Religions(Religion_Id,ID)values('Hindu',3)");
+            sqlList.Add($"insert into Religions(Religion_Id,ID)values('Christian',4)");
+            sqlList.Add($"insert into Religions(Religion_Id,ID)values('Others',5)");
+
+            sqlList.Add($"insert into Relationships(Relationship_Id,ID)values('Unmarried',1)");
+            sqlList.Add($"insert into Relationships(Relationship_Id,ID)values('Married',2)");
+            sqlList.Add($"insert into Relationships(Relationship_Id,ID)values('Divorced',3)");
+            sqlList.Add($"insert into Relationships(Relationship_Id,ID)values('Unknown',4)");
+
+            string pst = await AioDLL.PostAsSqlListSqlDB(sqlList);
+            if (AppKeys.PostSuccess == pst)
+            {
+                MsgBox.Success(this.Text);
+            }
+            else
+            {
+                MsgBox.Failed(pst, this.Text);
+            }
+        }
+        #endregion
+
+        #region Beds
+        private async void Insert_Services()
+        {
+            List<string> sqlList = new List<string>();
+            sqlList.Add($"insert into Services(Service_Id,Service_Name,Service_Charge,Charge_Type,Create_By,Create_Dev)values(1,'Rent',0,'NotFixed','{AioData.UserId}','{AioData.DevicesId}')");
+            sqlList.Add($"insert into Services(Service_Id,Service_Name,Service_Charge,Charge_Type,Create_By,Create_Dev)values(2,'Services Charge',500,'Monthly','{AioData.UserId}','{AioData.DevicesId}')");
+            sqlList.Add($"insert into Services(Service_Id,Service_Name,Service_Charge,Charge_Type,Create_By,Create_Dev)values(3,'Cooker',20,'Daily','{AioData.UserId}','{AioData.DevicesId}')");
+            sqlList.Add($"insert into Services(Service_Id,Service_Name,Service_Charge,Charge_Type,Create_By,Create_Dev)values(4,'Electricity',0,'NotFixed','{AioData.UserId}','{AioData.DevicesId}')");
+            sqlList.Add($"insert into Services(Service_Id,Service_Name,Service_Charge,Charge_Type,Create_By,Create_Dev)values(5,'Gas',750,'Monthly','{AioData.UserId}','{AioData.DevicesId}')");
+            string pst = await AioDLL.PostAsSqlListSqlDB(sqlList);
+            if (AppKeys.PostSuccess == pst)
+            {
+                MsgBox.Success(this.Text);
+            }
+            else
+            {
+                MsgBox.Failed(pst, this.Text);
+            }
+        }
+        #endregion
+
 
         private async void btnSelect_Click(object sender, EventArgs e)
         {
